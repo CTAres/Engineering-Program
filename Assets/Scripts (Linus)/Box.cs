@@ -7,14 +7,16 @@ public class Box : MonoBehaviour
     public bool isMarked;
 
     private SpriteRenderer spriteRenderer;
-    private void Awake ()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer> ();
 
-        index = transform.GetSiblingIndex ();
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        index = transform.GetSiblingIndex();
         mark = Mark.None;
         isMarked = false;
     }
+
 
     public void SetAsMarked(Sprite sprite, Mark mark)
     {
@@ -23,7 +25,8 @@ public class Box : MonoBehaviour
 
         spriteRenderer.sprite = sprite;
 
-        GetComponent<CircleCollider2D> ().enabled = false;  
+        //Collider gets disabled so that it cant be overwriten
+        GetComponent<CircleCollider2D>().enabled = false;  
     }
 
     public void ResetBox(Sprite empty)
@@ -33,6 +36,7 @@ public class Box : MonoBehaviour
 
         spriteRenderer.sprite = empty;
         
-        GetComponent<CircleCollider2D> ().enabled = true;  
+        //Collider gets enabled so that it can be used again
+        GetComponent<CircleCollider2D>().enabled = true;  
     }
 }
