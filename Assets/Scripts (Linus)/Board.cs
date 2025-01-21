@@ -15,6 +15,8 @@ public class Board : MonoBehaviour
     private Camera cam;
     private Mark currentMark;
 
+    public bool roundOver;
+
     private void Start ()
     {
         cam = Camera.main;
@@ -26,6 +28,11 @@ public class Board : MonoBehaviour
 
     private void Update()
     {
+        if (roundOver)
+        {
+            EndRound();
+            return;
+        }
         if (Input.GetMouseButtonUp (0))
         {
             Vector2 touchPosition = cam.ScreenToWorldPoint (Input.mousePosition);
@@ -49,12 +56,16 @@ public class Board : MonoBehaviour
 
             if (CheckIfWin())
             {
-                Debug.Log (currentMark.ToString () + " Wins!");
-                return;
+                roundOver = true;
             };
 
             SwitchPlayer();
         }
+    }
+
+    private void EndRound()
+    {
+        Debug.Log (currentMark.ToString () + " Wins!");
     }
 
     private bool CheckIfWin ()
