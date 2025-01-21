@@ -25,4 +25,14 @@ public class Box : MonoBehaviour
 
         GetComponent<CircleCollider2D> ().enabled = false;  
     }
+
+    public void ResetBox(Sprite empty)
+    {
+        isMarked = false;
+        this.mark = Mark.None;
+
+        spriteRenderer.sprite = empty;
+        
+        GetComponent<CircleCollider2D> ().enabled = true;  
+    }
 }

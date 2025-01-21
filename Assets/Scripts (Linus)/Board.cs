@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -9,6 +10,10 @@ public class Board : MonoBehaviour
     [Header("Mark Sprites: ")]
     [SerializeField] private Sprite spriteX;
     [SerializeField] private Sprite spriteO;
+    [SerializeField] private Sprite spriteEmpty;
+
+    [Header("Box Settings: ")]
+    [SerializeField] private Box[] allBoxes;
 
     public Mark[] marks;
 
@@ -16,6 +21,9 @@ public class Board : MonoBehaviour
     private Mark currentMark;
 
     public bool roundOver;
+
+    private int xWins;
+    private int oWins;
 
     private void Start ()
     {
@@ -57,6 +65,7 @@ public class Board : MonoBehaviour
             if (CheckIfWin())
             {
                 roundOver = true;
+                return;
             };
 
             SwitchPlayer();
@@ -66,6 +75,20 @@ public class Board : MonoBehaviour
     private void EndRound()
     {
         Debug.Log (currentMark.ToString () + " Wins!");
+        if(currentMark == Mark.X)
+        {
+            xWins =+ 1;
+        }
+        else
+        {
+            oWins =+1;
+        }
+         Debug.Log ("Total wins: X = " + xWins + " | O = " + oWins);
+
+         for(int i = 0; i < allBoxes.Length; i++)
+         {
+            allBoxes[i].ResetBox(spriteEmpty);
+         }
     }
 
     private bool CheckIfWin ()

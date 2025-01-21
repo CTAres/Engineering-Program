@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 17767093}
   - component: {fileID: 17767095}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 76738932}
   - component: {fileID: 76738934}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 149902719}
   - component: {fileID: 149902721}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 431317689}
   - component: {fileID: 431317691}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 712468357}
   - component: {fileID: 712468359}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 914394577}
   - component: {fileID: 914394579}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 1104202619}
   - component: {fileID: 1104202621}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1333,7 +1333,7 @@ GameObject:
   - component: {fileID: 1327750172}
   - component: {fileID: 1327750174}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 1346728360}
   - component: {fileID: 1346728361}
   m_Layer: 8
-  m_Name: Box
+  m_Name: Box 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1715,9 +1715,19 @@ MonoBehaviour:
   touchRadius: 0.2
   spriteX: {fileID: 3959922740387019359, guid: 35d55a36570f36e4990b7c4ac49bd5fb, type: 3}
   spriteO: {fileID: -5098722796299924958, guid: 64383bb2dbda7714fb0449dff35d48f7, type: 3}
-  colorX: {r: 0, g: 0, b: 0, a: 0}
-  colorO: {r: 0, g: 0, b: 0, a: 0}
+  spriteEmpty: {fileID: 0}
+  allBoxes:
+  - {fileID: 1346728361}
+  - {fileID: 76738934}
+  - {fileID: 914394579}
+  - {fileID: 1327750174}
+  - {fileID: 149902721}
+  - {fileID: 431317691}
+  - {fileID: 17767095}
+  - {fileID: 1104202621}
+  - {fileID: 712468359}
   marks: 
+  roundOver: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
