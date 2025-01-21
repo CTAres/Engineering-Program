@@ -16,12 +16,11 @@ public class Box : MonoBehaviour
         isMarked = false;
     }
 
-    public void SetAsMarked(Sprite sprite, Mark mark, Color color)
+    public void SetAsMarked(Sprite sprite, Mark mark)
     {
         isMarked = true;
         this.mark = mark;
 
-        spriteRenderer.color = color;
         spriteRenderer.sprite = sprite;
 
         GetComponent<CircleCollider2D> ().enabled = false;  

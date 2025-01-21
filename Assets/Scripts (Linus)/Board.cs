@@ -10,10 +10,6 @@ public class Board : MonoBehaviour
     [SerializeField] private Sprite spriteX;
     [SerializeField] private Sprite spriteO;
 
-    [Header ("Mark Colors: ")]
-    [SerializeField] private Color colorX;
-    [SerializeField] private Color colorO;
-
     public Mark[] marks;
 
     private Camera cam;
@@ -49,7 +45,7 @@ public class Board : MonoBehaviour
         {
             marks [box.index] = currentMark;
 
-            box.SetAsMarked (GetSprite(), currentMark, GetColor());
+            box.SetAsMarked (GetSprite(), currentMark);
 
             SwitchPlayer();
         }
@@ -58,11 +54,6 @@ public class Board : MonoBehaviour
     private void SwitchPlayer ()
     {
         currentMark = (currentMark == Mark.X) ? Mark.O : Mark.X;
-    }
-
-    private Color GetColor ()
-    {
-        return (currentMark == Mark.X) ? colorX : colorO;
     }
 
     private Sprite GetSprite ()
