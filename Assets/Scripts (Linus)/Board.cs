@@ -39,7 +39,6 @@ public class Board : MonoBehaviour
         if (roundOver)
         {
             EndRound();
-            return;
         }
         if (Input.GetMouseButtonUp (0))
         {
@@ -77,18 +76,20 @@ public class Board : MonoBehaviour
         Debug.Log (currentMark.ToString () + " Wins!");
         if(currentMark == Mark.X)
         {
-            xWins =+ 1;
+            xWins = xWins+1;
         }
         else
         {
-            oWins =+1;
+            oWins = oWins+1;
         }
          Debug.Log ("Total wins: X = " + xWins + " | O = " + oWins);
 
          for(int i = 0; i < allBoxes.Length; i++)
          {
             allBoxes[i].ResetBox(spriteEmpty);
+            marks[i] = Mark.None;
          }
+         roundOver = false;
     }
 
     private bool CheckIfWin ()
