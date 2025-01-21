@@ -64,7 +64,6 @@ public class Board : MonoBehaviour
             if (CheckIfWin())
             {
                 roundOver = true;
-                return;
             };
 
             SwitchPlayer();
