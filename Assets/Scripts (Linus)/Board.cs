@@ -1,6 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-
 public class Board : MonoBehaviour
 {
     [Header("Input Settings: ")]
@@ -13,17 +14,16 @@ public class Board : MonoBehaviour
     [SerializeField] private Sprite spriteEmpty;
 
     [Header("Box Settings: ")]
-    [SerializeField] private Box[] allBoxes;
+    public Box[] allBoxes;
 
     public Mark[] marks;
 
     private Camera cam;
-    private Mark currentMark;
-
-    public bool roundOver;
+    public Mark currentMark;
 
     private int xWins;
     private int oWins;
+
 
     private void Start()
     {
@@ -36,10 +36,6 @@ public class Board : MonoBehaviour
 
     private void Update()
     {
-        if (roundOver)
-        {
-            EndRound();
-        }
         if (Input.GetMouseButtonUp(0)) //Checks if a box is clicked
         {
             Vector2 touchPosition = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -63,33 +59,43 @@ public class Board : MonoBehaviour
 
             if(CheckIfWin())
             {
-                roundOver = true;
+                EndRound(currentMark);
                 //no return here even if win, so that after a win the other player starts
-            };
+            }
+            if(CheckIfDraw())
+            {
+                EndRound(Mark.None);
+            }
 
             SwitchPlayer();
         }
     }
 
-    private void EndRound() //increses win counter and prepares next game
+    private void EndRound(Mark winner) //increses win counter and prepares next game
     {
-        Debug.Log (currentMark.ToString() + " Wins!");
-        if(currentMark == Mark.X)
+        if(winner != Mark.None)
         {
-            xWins = xWins+1;
+            Debug.Log (winner.ToString() + " Wins!");
+            if(currentMark == Mark.X)
+            {
+                xWins = xWins+1;
+            }
+            else
+            {
+                oWins = oWins+1;
+            }
+            Debug.Log("Total wins: X = " + xWins + " | O = " + oWins);
         }
         else
         {
-            oWins = oWins+1;
+            Debug.Log ("Draw!");
+            Debug.Log("Total wins: X = " + xWins + " | O = " + oWins);
         }
-         Debug.Log("Total wins: X = " + xWins + " | O = " + oWins);
-
-         for(int i = 0; i < allBoxes.Length; i++) //reset all boxes in the box script and the marks array
-         {
-            allBoxes[i].ResetBox(spriteEmpty);
-            marks[i] = Mark.None;
-         }
-         roundOver = false;
+        for(int i = 0; i < allBoxes.Length; i++) //reset all boxes in the box script and the marks array
+        {
+           allBoxes[i].ResetBox(spriteEmpty);
+           marks[i] = Mark.None;
+        }
     }
 
     private bool CheckIfWin() //checks all possible win combinations
@@ -100,13 +106,25 @@ public class Board : MonoBehaviour
         AreBoxesMatched(0,4,8) || AreBoxesMatched(2,4,6);
     }
 
+    public bool CheckIfDraw()
+    {
+        for(int i = 0; i < allBoxes.Length; i++)
+        {
+            if(!allBoxes[i].isMarked)
+            {
+                return false;
+            }
+        }
+        return !CheckIfWin();
+    }
+
     private bool AreBoxesMatched(int a, int b, int c) //checks if three boxes have the same (current)mark
     {
         Mark m = currentMark;
         return (marks[a] == m && marks[b] == m && marks[c] == m);
     }
 
-    private void SwitchPlayer() //switches to the next player
+    public void SwitchPlayer() //switches to the next player
     {
         currentMark = (currentMark == Mark.X) ? Mark.O : Mark.X;
     }

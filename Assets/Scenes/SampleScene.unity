@@ -1727,7 +1727,6 @@ MonoBehaviour:
   - {fileID: 1104202621}
   - {fileID: 712468359}
   marks: 
-  roundOver: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
