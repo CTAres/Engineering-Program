@@ -21,8 +21,10 @@ public class Board : MonoBehaviour
     private Camera cam;
     public Mark currentMark;
 
-    private int xWins;
+    public int xWins;
     private int oWins;
+
+    public int test = 0;
 
 
     private void Start()
@@ -49,7 +51,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void HitBox(Box box) //if the box isnt marked, it gets claimed for the current player. After that we check win conditions
+    public void HitBox(Box box) //if the box isnt marked, it gets claimed for the current player. After that we check win conditions
     {
         if(!box.isMarked) 
         {
@@ -71,11 +73,11 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void EndRound(Mark winner) //increses win counter and prepares next game
+    public void EndRound(Mark winner) //increses win counter and prepares next game
     {
         if(winner != Mark.None)
         {
-            Debug.Log (winner.ToString() + " Wins!");
+            Debug.Log(winner.ToString() + " Wins!");
             if(currentMark == Mark.X)
             {
                 xWins = xWins+1;
@@ -85,6 +87,17 @@ public class Board : MonoBehaviour
                 oWins = oWins+1;
             }
             Debug.Log("Total wins: X = " + xWins + " | O = " + oWins);
+            if(xWins == 3)
+            {
+                test = 1;
+                Debug.Log("X won!");
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+            else if(oWins == 3)
+            {
+                Debug.Log("O won!");
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
         }
         else
         {
