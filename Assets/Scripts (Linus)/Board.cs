@@ -1,5 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
+using Mono.Cecil.Cil;
+using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
 using UnityEngine;
 public class Board : MonoBehaviour
@@ -14,7 +18,7 @@ public class Board : MonoBehaviour
     [SerializeField] private Sprite spriteEmpty;
 
     [Header("Box Settings: ")]
-    public Box[] allBoxes;
+    public Box[] allBoxes = new Box[9];
 
     public Mark[] marks;
 
@@ -26,7 +30,6 @@ public class Board : MonoBehaviour
 
     public int test = 0;
 
-
     private void Start()
     {
         cam = Camera.main;
@@ -34,6 +37,16 @@ public class Board : MonoBehaviour
         currentMark = Mark.X;
 
         marks = new Mark[9];
+        
+        GameObject board = GameObject.Find("Board");
+        //this (line 44) is the line that fucks up the Unit Tests. I always get "NullReferenceException: Object reference not set to an instance of an object" as error.
+        //Was not able to fix that in any way. Unit Tests still written out to show how they are supposed to work.
+        Transform[] ts = board.GetComponentsInChildren<Transform>();
+        
+        for (int i = 1; i < ts.Length; i++)
+        {
+            allBoxes[i-1] = ts[i].GetComponent<Box>();
+        }
     }
 
     private void Update()
@@ -87,13 +100,14 @@ public class Board : MonoBehaviour
                 oWins = oWins+1;
             }
             Debug.Log("Total wins: X = " + xWins + " | O = " + oWins);
-            if(xWins == 3)
+            if(xWins >= 3)
             {
+                //this test value is for the unit test "WinTest" to get some kind of feedback if X wins.
                 test = 1;
                 Debug.Log("X won!");
                 UnityEditor.EditorApplication.isPlaying = false;
             }
-            else if(oWins == 3)
+            else if(oWins >= 3)
             {
                 Debug.Log("O won!");
                 UnityEditor.EditorApplication.isPlaying = false;

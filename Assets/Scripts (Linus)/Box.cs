@@ -17,7 +17,6 @@ public class Box : MonoBehaviour
         isMarked = false;
     }
 
-
     public void SetAsMarked(Sprite sprite, Mark mark)
     {
         isMarked = true;

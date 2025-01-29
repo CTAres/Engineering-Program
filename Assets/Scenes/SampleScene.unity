@@ -1717,16 +1717,19 @@ MonoBehaviour:
   spriteO: {fileID: -5098722796299924958, guid: 64383bb2dbda7714fb0449dff35d48f7, type: 3}
   spriteEmpty: {fileID: 0}
   allBoxes:
-  - {fileID: 1346728361}
-  - {fileID: 76738934}
-  - {fileID: 914394579}
-  - {fileID: 1327750174}
-  - {fileID: 149902721}
-  - {fileID: 431317691}
-  - {fileID: 17767095}
-  - {fileID: 1104202621}
-  - {fileID: 712468359}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   marks: 
+  currentMark: 0
+  xWins: 0
+  test: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
