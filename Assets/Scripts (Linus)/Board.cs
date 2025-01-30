@@ -30,7 +30,7 @@ public class Board : MonoBehaviour
 
     public int test = 0;
 
-    private void Start()
+    public void Start()
     {
         cam = Camera.main;
 
